@@ -1,0 +1,25 @@
+/* Slider  */
+
+.carousel-item{
+    height: 100vh;
+    min-height: 320px;
+    background: no-repeat scroll center scroll;
+    -webkit-background-size: cover ;
+    background-size: cover;
+}
+
+.carousel-caption{
+    bottom: 180px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.carousel-caption h1{
+    font-size: 5em;
+    font-weight: 700;
+}
+
+.carousel-caption p {
+    font-size: 18px;
+    top: 2em;
+}
