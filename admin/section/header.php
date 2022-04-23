@@ -42,7 +42,7 @@
 	<div class="container">
   	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse
     " role="navigation">
-      <div class="container">
+      <div class="container" >
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -54,15 +54,15 @@
 
         <div class="collapse navbar-collapse" id="example-nav-collapse">
           <ul class="nav navbar-nav">
-            <!-- 
-            <li><a href="#featuresTab"><span class="subFont"><strong>Features</strong></span></a></li>
-            <li><a href="#feedbackTab"><span class="subFont"><strong>Feedback</strong></span></a></li>
-            <li><a href="#"><span class="subFont"><strong>About</strong></span></a></li>
-        	-->
+            
+            <li><a href="changePassword.php"><span class="subFont"><strong>Change Password</strong></span></a></li>
+            <li><a href="feedbackReport.php"><span class="subFont"><strong>Feedback Report</strong></span></a></li>
+            <li><a href="users.php"><span class="subFont"><strong>Users</strong></span></a></li>
+        	
           </ul>
           
 
-          <button type="submit" class="btn btn-success navbar-right navbar-btn"><span class="normalFont"><strong>Admin Panel</strong></span></button>
+          <button type="submit" class="btn btn-success navbar-right navbar-btn"><a href="../adminlogin.php"></a><span class="normalFont"><strong>Admin Panel</strong></span></button>
         </div>
 
       </div> <!-- end of container -->

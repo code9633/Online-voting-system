@@ -46,7 +46,7 @@
 
                 // CONGRESS
                 $sql ="SELECT * FROM tbl_users WHERE voted_for='INC'";
-                $result= mysqli_query($conn, $sql);
+                $result= mysqli_query($con, $sql);
 
                 if(mysqli_num_rows($result)>0)
                 {
@@ -71,7 +71,7 @@
 
                 // AAP
                 $sql ="SELECT * FROM tbl_users WHERE voted_for='AAP'";
-                $result= mysqli_query($conn, $sql);
+                $result= mysqli_query($con, $sql);
 
                 if(mysqli_num_rows($result)>0)
                 {
@@ -96,7 +96,7 @@
 
                 // TMC
                 $sql ="SELECT * FROM tbl_users WHERE voted_for='TMC'";
-                $result= mysqli_query($conn, $sql);
+                $result= mysqli_query($con, $sql);
 
                 if(mysqli_num_rows($result)>0)
                 {
@@ -125,7 +125,7 @@
 
                 // Total
                 $sql ="SELECT * FROM tbl_users";
-                $result= mysqli_query($conn, $sql);
+                $result= mysqli_query($con, $sql);
 
                 if(mysqli_num_rows($result)>0)
                 {
@@ -136,7 +136,7 @@
                   }
 
 
-                  $tptal= $total*10;
+                  $total= $total*10;
 
                   echo "<strong>Total Number of Votes</strong><br>";
                   echo "
@@ -146,7 +146,6 @@
                   ";
                 }
 
-              
             ?>
           </div>
 
