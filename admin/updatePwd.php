@@ -46,9 +46,9 @@
     <![endif]-->
   </head>
   <body>
-  
-  <div class="container">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse
+	
+	<div class="container">
+  	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse
     " role="navigation">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-nav-collapse">
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <div class="navbar-header">
-          <a href="cpanel.php" class="navbar-brand headerFont text-lg"><strong>eVoting</strong></a>
+          <a href="index.html" class="navbar-brand headerFont text-lg"><strong>eVoting</strong></a>
         </div>
 
         <div class="collapse navbar-collapse" id="example-nav-collapse">
@@ -66,7 +66,7 @@
             <li><a href="#featuresTab"><span class="subFont"><strong>Features</strong></span></a></li>
             <li><a href="#feedbackTab"><span class="subFont"><strong>Feedback</strong></span></a></li>
             <li><a href="#"><span class="subFont"><strong>About</strong></span></a></li>
-          -->
+        	-->
           </ul>
           
 
@@ -78,75 +78,83 @@
 
     
     <div class="container" style="padding-top:150px;">
-      <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4 text-center" style="border:2px solid gray;padding:50px;">
-          <?php
-                    
+    	<div class="row">
+    		<div class="col-sm-4"></div>
+    		<div class="col-sm-4 text-center" style="border:2px solid gray;padding:50px;">
 
-                      // Credentials
+<?php
+
+					// Credentials
                       $hostname= "localhost";
                       $username= "root";
                       $password= "";
                       $database= "db_evoting";
 
 
-                      // UserInput Test
+                    // UserInput Test
                       function test_input($data) {
                         $data = trim($data);
                         $data = stripslashes($data);
                         $data = htmlspecialchars($data);
-                       
+                        $data = mysql_real_escape_string($data);
                         return $data;
                       } 
 
-                      if(empty($_POST['adminUserName']) || empty($_POST['adminPassword']))
-                      {
-                        $error= "UserName or Password is Recquired.";
-                      }
-                      else
-                      {
-                        $admin_username= test_input($_POST['adminUserName']);
-                        $admin_password= test_input($_POST['adminPassword']);
 
+	// Fetch Data
+	if(empty($_POST['existingPassword']) || empty($_POST['newPassword']))
+	{
+		$error= "Fields Recquired.";
+	}
+	else
+	{
+		$old= test_input($_POST['existingPassword']);
+		$new= test_input($_POST['newPassword']);
+	}
 
-                        //Establish Connection
-                        $conn= mysqli_connect($hostname, $username, $password, $database);
+	//Establish Connection
+	$conn= mysql_connect($hostname, $username, $password, $database);
 
-                        //Check
-                        if(!$conn)
-                        {
-                          die("Connection Failed : ".mysqli_connect_error());
-                        }
+	// Select Database
+	//$db= mysql_select_db($db, $conn);
 
-                        $sql= "SELECT * FROM db_evoting.tbl_admin WHERE admin_username='".$admin_username."' AND admin_password='".$admin_password."'";
-                        $query= mysqli_query($conn, $sql);
-                       
+	// ******************************
+	// ADD USER NAME FIELD HERE-- FROM SESSION
+	//**********************************
 
-                        
-                        if(mysqli_num_rows($query)==1)
-                        {
-                          header("location:cpanel.php");
-                        }
-                        else
-                        {
-                          $error="Sorry !! Authentication Failed";
-                          
-                          echo "<p class='alert alert-danger'><strong>$error</strong></p>";
+	$sql="SELECT * FROM db_evoting.tbl_admin WHERE admin_password='".$old."'";
+	$query= mysql_query($sql, $conn);
+	$rows= mysql_num_rows($query);
+	if($rows==1)
+	{
+		// Given Password is Valid
+		$sql="UPDATE db_evoting.tbl_admin SET admin_password='$new' WHERE admin_username='admin'"; // =============EDIT *SESSSION_SUERNAME *
+		if($query= mysql_query($sql, $conn))
+		{
+			// Successfully Changed
+			echo "<img src='images/success.png' width='70' height='70'>";
+			echo "<h3 class='text-info specialHead text-center'><strong> SUCCESSFULLY CHANGED.</strong></h3>";
+			echo "<a href='cpanel.php' class='btn btn-primary'> <span class='glyphicon glyphicon-ok'></span> <strong> Finish</strong> </a>";
+		}
+	}
+	else
+	{
+		$error= "Old-Password is Incorrect";
 
-                          echo "<p class='normalFont text-primary'><strong>Your Combination of UserName and Password is In-correct. Better, You contact to the developer of system.</strong> </p>";
-                          echo "<br><a href='admin.html' class='btn btn-primary'><span class='glyphicon glyphicon-refresh'></span> <strong>Try Again</strong></a>";
-                        }
+		echo "<img src='images/error.png' width='70' height='70'>";
+		echo "<h3 class='text-info specialHead text-center'><strong> $error</strong></h3>";
+		echo "<a href='index.html' class='btn btn-primary'> <span class='glyphicon glyphicon-ok'></span> <strong> Finish</strong> </a>";
 
-                        mysqli_close($conn);
+	}
 
-                      }
-                    
-          ?>
+	mysql_close($conn);
 
-          </div>
-        <div class="col-sm-4"></div>
-      </div>
+?>
+
+	
+    		</div>
+    		<div class="col-sm-4"></div>
+    	</div>
     </div>
 
     </div>

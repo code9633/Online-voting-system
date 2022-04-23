@@ -62,7 +62,7 @@
           </ul>
           
 
-          <button type="submit" class="btn btn-success navbar-right navbar-btn"><a href="../adminlogin.php"></a><span class="normalFont"><strong>Admin Panel</strong></span></button>
+          <span class="normalFont"><a href="../admin/adminlogin.php" class="btn btn-success navbar-right navbar-btn"><strong>Admin Panel</strong></a></span>
         </div>
 
       </div> <!-- end of container -->

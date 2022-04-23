@@ -1,4 +1,9 @@
-<?php include('section/header.php');?>
+<?php 
+
+include('section/header.php');
+include('../constant/config.php');
+
+?>
 
 <?php 
 
@@ -7,7 +12,7 @@
 
   //2.set the sql aury to set the details
   $sql = "SELECT * FROM tbl_admin WHERE id = $id";
-
+  
   //execute the query
   $result = mysqli_query($con, $sql);
 

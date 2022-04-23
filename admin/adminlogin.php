@@ -100,7 +100,7 @@
     			<div class="page-header">
     				<h2 class="specialHead">Authentication</h2>
     			</div>
-          <form action="authentication.php" method="POST">
+          <form action="" method="POST">
       			<div class="form-group">
       				<label for="">Username</label><br>
       				<input type="text" name="adminUserName" placeholder="Enter Admin's UserName" class="form-control"><br>
